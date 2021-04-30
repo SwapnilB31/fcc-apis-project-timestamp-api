@@ -3,10 +3,15 @@ const cors = require('cors')
 
 const app = express()
 app.use(cors())
+app.use(express.static('public'));
 
 app.listen(80,"0.0.0.0",() => {
   console.log("Server is listening on port 80")
 })
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
 
 app.get('/api',(req,res) => {
   const currDate = new Date()
